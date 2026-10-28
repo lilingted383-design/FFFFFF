@@ -119,19 +119,48 @@ export async function toggleAssociation(tagNumber: string, partNumber: string, a
   return await toggleAssociationFirestore(tagNumber, partNumber, action);
 }
 
-export async function uploadFile(file: File, fileType: FileType, description = ''): Promise<FileRecord> {
-  const formData = new FormData();
-  formData.append('file', file);
-  formData.append('fileType', fileType);
-  formData.append('description', description);
-
-  const res = await fetch('/api/files/upload', {
-    method: 'POST',
-    body: formData,
+function fileToDataUrl(file: File): Promise<string> {
+  return new Promise((resolve, reject) => {
+    const reader = new FileReader();
+    reader.onload = () => resolve(reader.result as string);
+    reader.onerror = reject;
+    reader.readAsDataURL(file);
   });
-  const json = await res.json();
-  if (!res.ok) throw new Error(json.error || '檔案上傳失敗');
-  return json;
+}
+
+export async function uploadFile(file: File, fileType: FileType, description = ''): Promise<FileRecord> {
+  try {
+    const formData = new FormData();
+    formData.append('file', file);
+    formData.append('fileType', fileType);
+    formData.append('description', description);
+
+    const res = await fetch('/api/files/upload', {
+      method: 'POST',
+      body: formData,
+    });
+    if (res.ok) {
+      return await res.json();
+    }
+  } catch (err) {
+    console.warn('後端 API 未運作 (靜態託管 GitHub Pages 模式)，使用瀏覽器直接編碼儲存：', err);
+  }
+
+  // Fallback for static environments (e.g. GitHub Pages)
+  const dataUrl = await fileToDataUrl(file);
+  const fileId = `f_${Date.now()}_${Math.random().toString(36).substring(2, 7)}`;
+  return {
+    id: fileId,
+    originalName: file.name,
+    fileType,
+    mimeType: file.type || 'application/octet-stream',
+    size: file.size,
+    storedFilename: file.name,
+    url: dataUrl,
+    downloadUrl: dataUrl,
+    uploadedAt: new Date().toISOString(),
+    description,
+  };
 }
 
 export async function uploadMultipleFiles(
@@ -139,29 +168,41 @@ export async function uploadMultipleFiles(
   fileType: FileType,
   description = ''
 ): Promise<FileRecord[]> {
-  const formData = new FormData();
-  files.forEach((file) => {
-    formData.append('files', file);
-  });
-  formData.append('fileType', fileType);
-  formData.append('description', description);
+  try {
+    const formData = new FormData();
+    files.forEach((file) => {
+      formData.append('files', file);
+    });
+    formData.append('fileType', fileType);
+    formData.append('description', description);
 
-  const res = await fetch('/api/files/upload-multiple', {
-    method: 'POST',
-    body: formData,
-  });
-  const json = await res.json();
-  if (!res.ok) throw new Error(json.error || '批次檔案上傳失敗');
-  return json;
+    const res = await fetch('/api/files/upload-multiple', {
+      method: 'POST',
+      body: formData,
+    });
+    if (res.ok) {
+      return await res.json();
+    }
+  } catch (err) {
+    console.warn('後端 API 未運作 (靜態託管 GitHub Pages 模式)，使用瀏覽器直接編碼儲存：', err);
+  }
+
+  // Fallback for static environments (e.g. GitHub Pages)
+  const records: FileRecord[] = [];
+  for (const file of files) {
+    const rec = await uploadFile(file, fileType, description);
+    records.push(rec);
+  }
+  return records;
 }
 
 export async function deleteFileRecord(fileId: string): Promise<void> {
-  const res = await fetch(`/api/files/${encodeURIComponent(fileId)}`, {
-    method: 'DELETE',
-  });
-  if (!res.ok) {
-    const json = await res.json();
-    throw new Error(json.error || '刪除檔案失敗');
+  try {
+    await fetch(`/api/files/${encodeURIComponent(fileId)}`, {
+      method: 'DELETE',
+    });
+  } catch {
+    // Ignore server error in static mode
   }
 }
 
