@@ -1,0 +1,549 @@
+{
+  "equipment": [
+    {
+      "tagNumber": "CR-001",
+      "name": "大型塑膠粉碎機",
+      "parentTagNumber": null,
+      "category": "主設備",
+      "installationLocation": "A棟原料粉碎區 1號線",
+      "notes": "廠區核心粉碎機，負責回收料初碎。雙重安全極限開關與連鎖控制。",
+      "files": [
+        {
+          "id": "seed-f1",
+          "originalName": "CR-001_粉碎機控制電路圖_REV3.pdf",
+          "fileType": "circuit_diagram",
+          "mimeType": "application/pdf",
+          "size": 980,
+          "storedFilename": "seed-cr001-schematic.pdf",
+          "url": "/api/files/seed-f1",
+          "downloadUrl": "/api/files/seed-f1/download",
+          "uploadedAt": "2026-10-23T00:39:30.047Z",
+          "description": "主馬達 380V 與 PLC 控制迴路圖"
+        },
+        {
+          "id": "seed-f2",
+          "originalName": "CR-001_粉碎機現場安裝照.svg",
+          "fileType": "site_photo",
+          "mimeType": "image/svg+xml",
+          "size": 1540,
+          "storedFilename": "seed-cr001-site.svg",
+          "url": "/api/files/seed-f2",
+          "downloadUrl": "/api/files/seed-f2/download",
+          "uploadedAt": "2026-10-23T00:39:30.047Z",
+          "description": "A棟粉碎車間現場全景照"
+        }
+      ],
+      "componentPartNumbers": [
+        "VFD-FUJI-37K",
+        "SEN-OMR-PRX"
+      ],
+      "createdAt": "2026-10-23T00:39:30.047Z",
+      "updatedAt": "2026-10-23T02:13:51.525Z",
+      "maintenanceRecords": [
+        {
+          "id": "maint_seed_1",
+          "equipmentTagNumber": "CR-001",
+          "date": "2026-10-16",
+          "personnel": "張文豪 (機電工程師)",
+          "content": "執行每週例行巡檢：檢查主馬達變頻器冷卻風扇運轉與端子螺絲鎖緊度，以紅外線熱成像檢測三相電源進線端子，溫度為 38.2°C (正常)，絕緣阻抗 > 50MΩ。",
+          "files": [],
+          "createdAt": "2026-10-23T02:13:41.627Z"
+        },
+        {
+          "id": "maint_seed_2",
+          "equipmentTagNumber": "CR-001",
+          "date": "2026-10-21",
+          "personnel": "李建志 (現場技術員)",
+          "content": "料斗安全連鎖近接開關 SEN-001 重新清潔與校正，感測距離調整為 8mm，測試急停按鈕與雙迴路安全繼電器連鎖停機功能均正常無誤。",
+          "files": [],
+          "createdAt": "2026-10-23T02:13:41.627Z"
+        }
+      ]
+    },
+    {
+      "tagNumber": "MTR-001",
+      "name": "粉碎主馬達",
+      "parentTagNumber": "CR-001",
+      "category": "馬達",
+      "installationLocation": "粉碎機 CR-001 本體底座",
+      "notes": "37kW 三相 380V 馬達，皮帶輪減速傳動。注意定期檢測絕緣阻抗與軸承溫度。",
+      "files": [],
+      "componentPartNumbers": [
+        "MTR-TECO-37K"
+      ],
+      "createdAt": "2026-10-23T00:39:30.047Z",
+      "updatedAt": "2026-10-23T00:39:30.047Z",
+      "maintenanceRecords": []
+    },
+    {
+      "tagNumber": "VFD-001",
+      "name": "馬達變頻器單元",
+      "parentTagNumber": "CR-001",
+      "category": "變頻器",
+      "installationLocation": "控制盤 CP-01 內部左側",
+      "notes": "驅動 MTR-001 主馬達，通訊由 PLC 經比率類比電壓調速。",
+      "files": [],
+      "componentPartNumbers": [
+        "VFD-FUJI-37K"
+      ],
+      "createdAt": "2026-10-23T00:39:30.047Z",
+      "updatedAt": "2026-10-23T00:39:30.047Z",
+      "maintenanceRecords": []
+    },
+    {
+      "tagNumber": "CP-01",
+      "name": "粉碎機主控制盤",
+      "parentTagNumber": "CR-001",
+      "category": "控制盤",
+      "installationLocation": "A棟原料粉碎區 1號機右側立柱旁",
+      "notes": "IP55 防水防塵電控盤，包含主進線 NFB、PLC、直流 24V 電源及繼電器陣列。",
+      "files": [],
+      "componentPartNumbers": [
+        "PSU-MW-24V",
+        "RLY-OMR-MY4",
+        "MC-SCH-32A",
+        "NFB-SHIN-50A"
+      ],
+      "createdAt": "2026-10-23T00:39:30.047Z",
+      "updatedAt": "2026-10-23T00:39:30.047Z",
+      "maintenanceRecords": []
+    },
+    {
+      "tagNumber": "PLC-01",
+      "name": "中央 PLC 控制器",
+      "parentTagNumber": "CP-01",
+      "category": "PLC I/O",
+      "installationLocation": "控制盤 CP-01 導軌第二層",
+      "notes": "執行設備啟停順序、過載連鎖、震動異常停機程式。",
+      "files": [],
+      "componentPartNumbers": [
+        "PLC-FX5U-32M",
+        "PSU-MW-24V"
+      ],
+      "createdAt": "2026-10-23T00:39:30.047Z",
+      "updatedAt": "2026-10-23T00:39:30.047Z",
+      "maintenanceRecords": []
+    },
+    {
+      "tagNumber": "SEN-001",
+      "name": "進料斗近接 Sensor",
+      "parentTagNumber": "CR-001",
+      "category": "感測器",
+      "installationLocation": "粉碎機進料導槽側邊",
+      "notes": "檢測入料斗滿料狀態，觸發自動進料減速。",
+      "files": [],
+      "componentPartNumbers": [
+        "SEN-OMR-PRX"
+      ],
+      "createdAt": "2026-10-23T00:39:30.047Z",
+      "updatedAt": "2026-10-23T00:39:30.047Z",
+      "maintenanceRecords": []
+    },
+    {
+      "tagNumber": "FAN-001",
+      "name": "盤頂散熱風扇組",
+      "parentTagNumber": "CP-01",
+      "category": "冷卻風扇",
+      "installationLocation": "控制盤 CP-01 頂部排熱口",
+      "notes": "溫控器設定 35°C 自動啟動強制抽風。",
+      "files": [],
+      "componentPartNumbers": [],
+      "createdAt": "2026-10-23T00:39:30.047Z",
+      "updatedAt": "2026-10-23T00:39:30.047Z",
+      "maintenanceRecords": []
+    },
+    {
+      "tagNumber": "CV-001",
+      "name": "碎料出料輸送機",
+      "parentTagNumber": null,
+      "category": "主設備",
+      "installationLocation": "A棟原料粉碎區 輸送段",
+      "notes": "承接 CR-001 粉碎碎料並輸送至儲料槽。",
+      "files": [],
+      "componentPartNumbers": [
+        "PSU-MW-24V",
+        "RLY-OMR-MY4"
+      ],
+      "createdAt": "2026-10-23T00:39:30.047Z",
+      "updatedAt": "2026-10-23T00:39:30.047Z",
+      "maintenanceRecords": []
+    }
+  ],
+  "spareParts": [
+    {
+      "partNumber": "VFD-FUJI-37K",
+      "name": "變頻器",
+      "brand": "FUJI 富士電機",
+      "model": "FRN0060C2S-4C (37kW)",
+      "stockQty": 2,
+      "minStockQty": 1,
+      "storageLocation": "備品庫 A架-02-01",
+      "files": [
+        {
+          "id": "seed-f3",
+          "originalName": "FUJI_FRN_變頻器原廠操作手冊.pdf",
+          "fileType": "manual",
+          "mimeType": "application/pdf",
+          "size": 1040,
+          "storedFilename": "seed-vfd-manual.pdf",
+          "url": "/api/files/seed-f3",
+          "downloadUrl": "/api/files/seed-f3/download",
+          "uploadedAt": "2026-10-23T00:39:30.047Z",
+          "description": "富士 FRENIC 繁體中文參數設定手冊"
+        },
+        {
+          "id": "seed-f4",
+          "originalName": "FRN0060C2S-4C_外觀照片.svg",
+          "fileType": "component_photo",
+          "mimeType": "image/svg+xml",
+          "size": 1480,
+          "storedFilename": "seed-vfd-part.svg",
+          "url": "/api/files/seed-f4",
+          "downloadUrl": "/api/files/seed-f4/download",
+          "uploadedAt": "2026-10-23T00:39:30.047Z",
+          "description": "備品庫存外箱與銘板實拍"
+        }
+      ],
+      "notes": "粉碎主馬達專用變頻器，出廠已載入 CR-01 專用加減速參數。",
+      "createdAt": "2026-10-23T00:39:30.047Z",
+      "updatedAt": "2026-10-23T00:39:30.047Z",
+      "storageLocations": [
+        "備品庫 A架-02-01"
+      ]
+    },
+    {
+      "partNumber": "MTR-TECO-37K",
+      "name": "高效率馬達",
+      "brand": "TECO 東元",
+      "model": "AEEV 37kW 4P 380V IE3",
+      "stockQty": 1,
+      "minStockQty": 1,
+      "storageLocation": "重型馬達專用區 M-01",
+      "files": [],
+      "notes": "法蘭臥式安裝，附 PTC 熱敏保護接點。",
+      "createdAt": "2026-10-23T00:39:30.047Z",
+      "updatedAt": "2026-10-23T00:39:30.047Z",
+      "storageLocations": [
+        "重型馬達專用區 M-01"
+      ]
+    },
+    {
+      "partNumber": "PSU-MW-24V",
+      "name": "電源供應器",
+      "brand": "MEAN WELL 明緯",
+      "model": "NDR-120-24 (24V 5A 120W)",
+      "stockQty": 6,
+      "minStockQty": 2,
+      "storageLocation": "備品庫 B櫃-01-04",
+      "files": [],
+      "notes": "標準 DIN 導軌型，工廠控制盤通用備品。",
+      "createdAt": "2026-10-23T00:39:30.047Z",
+      "updatedAt": "2026-10-23T00:39:30.047Z",
+      "storageLocations": [
+        "備品庫 B櫃-01-04"
+      ]
+    },
+    {
+      "partNumber": "SEN-OMR-PRX",
+      "name": "近接開關",
+      "brand": "OMRON 歐姆龍",
+      "model": "E2E-X10MF1 (M18 PNP NO 10mm)",
+      "stockQty": 12,
+      "minStockQty": 3,
+      "storageLocation": "備品庫 C抽屜-03",
+      "files": [],
+      "notes": "感應距離 10mm，耐油耐震型，適用於各料斗料位感測。",
+      "createdAt": "2026-10-23T00:39:30.047Z",
+      "updatedAt": "2026-10-23T00:39:30.047Z",
+      "storageLocations": [
+        "備品庫 C抽屜-03"
+      ]
+    },
+    {
+      "partNumber": "RLY-OMR-MY4",
+      "name": "繼電器",
+      "brand": "OMRON 歐姆龍",
+      "model": "MY4N-D2 24VDC (帶二極體與LED)",
+      "stockQty": 24,
+      "minStockQty": 10,
+      "storageLocation": "備品庫 C抽屜-01",
+      "files": [],
+      "notes": "配 PYF14A-E 導軌底座。",
+      "createdAt": "2026-10-23T00:39:30.047Z",
+      "updatedAt": "2026-10-23T00:39:30.047Z",
+      "storageLocations": [
+        "備品庫 C抽屜-01"
+      ]
+    },
+    {
+      "partNumber": "MC-SCH-32A",
+      "name": "接觸器",
+      "brand": "Schneider 施耐德",
+      "model": "LC1D32M7 (32A 3P 220VAC線圈)",
+      "stockQty": 4,
+      "minStockQty": 2,
+      "storageLocation": "備品庫 B櫃-02-02",
+      "files": [],
+      "notes": "盤內輔助接觸器與排風冷卻風扇啟動器。",
+      "createdAt": "2026-10-23T00:39:30.047Z",
+      "updatedAt": "2026-10-23T00:39:30.047Z",
+      "storageLocations": [
+        "備品庫 B櫃-02-02"
+      ]
+    },
+    {
+      "partNumber": "PLC-FX5U-32M",
+      "name": "PLC 模組",
+      "brand": "MITSUBISHI 三菱",
+      "model": "FX5U-32MT/ES (16入16晶體出)",
+      "stockQty": 2,
+      "minStockQty": 1,
+      "storageLocation": "防潮箱 E-02",
+      "files": [],
+      "notes": "內建乙太網路介面，備份程式在 SD 卡備份匣內。",
+      "createdAt": "2026-10-23T00:39:30.047Z",
+      "updatedAt": "2026-10-23T00:39:30.047Z",
+      "storageLocations": [
+        "防潮箱 E-02"
+      ]
+    },
+    {
+      "partNumber": "NFB-SHIN-50A",
+      "name": "無熔絲開關",
+      "brand": "SHIHLIN 士林電機",
+      "model": "NF50-CW 3P 50A 10kA",
+      "stockQty": 5,
+      "minStockQty": 2,
+      "storageLocation": "備品庫 B櫃-03-01",
+      "files": [],
+      "notes": "控制盤主電源進線隔離斷路器。",
+      "createdAt": "2026-10-23T00:39:30.047Z",
+      "updatedAt": "2026-10-23T00:39:30.047Z",
+      "storageLocations": [
+        "備品庫 B櫃-03-01"
+      ]
+    }
+  ],
+  "config": {
+    "equipmentCategories": [
+      "主設備",
+      "馬達",
+      "變頻器",
+      "感測器",
+      "控制盤",
+      "PLC I/O",
+      "冷卻風扇",
+      "氣動/液壓",
+      "輸送機構",
+      "其他"
+    ],
+    "partNames": [
+      "變頻器",
+      "高效率馬達",
+      "電源供應器",
+      "近接開關",
+      "繼電器",
+      "接觸器",
+      "PLC 模組",
+      "無熔絲開關",
+      "光電開關",
+      "電磁閥",
+      "伺服驅動器",
+      "微動開關",
+      "溫控器",
+      "端子台",
+      "其他",
+      "自訂特殊感測模組"
+    ]
+  },
+  "files": {
+    "seed-f1": {
+      "id": "seed-f1",
+      "originalName": "CR-001_粉碎機控制電路圖_REV3.pdf",
+      "fileType": "circuit_diagram",
+      "mimeType": "application/pdf",
+      "size": 980,
+      "storedFilename": "seed-cr001-schematic.pdf",
+      "url": "/api/files/seed-f1",
+      "downloadUrl": "/api/files/seed-f1/download",
+      "uploadedAt": "2026-10-23T00:39:30.047Z",
+      "description": "主馬達 380V 與 PLC 控制迴路圖"
+    },
+    "seed-f2": {
+      "id": "seed-f2",
+      "originalName": "CR-001_粉碎機現場安裝照.svg",
+      "fileType": "site_photo",
+      "mimeType": "image/svg+xml",
+      "size": 1540,
+      "storedFilename": "seed-cr001-site.svg",
+      "url": "/api/files/seed-f2",
+      "downloadUrl": "/api/files/seed-f2/download",
+      "uploadedAt": "2026-10-23T00:39:30.047Z",
+      "description": "A棟粉碎車間現場全景照"
+    },
+    "seed-f3": {
+      "id": "seed-f3",
+      "originalName": "FUJI_FRN_變頻器原廠操作手冊.pdf",
+      "fileType": "manual",
+      "mimeType": "application/pdf",
+      "size": 1040,
+      "storedFilename": "seed-vfd-manual.pdf",
+      "url": "/api/files/seed-f3",
+      "downloadUrl": "/api/files/seed-f3/download",
+      "uploadedAt": "2026-10-23T00:39:30.047Z",
+      "description": "富士 FRENIC 繁體中文參數設定手冊"
+    },
+    "seed-f4": {
+      "id": "seed-f4",
+      "originalName": "FRN0060C2S-4C_外觀照片.svg",
+      "fileType": "component_photo",
+      "mimeType": "image/svg+xml",
+      "size": 1480,
+      "storedFilename": "seed-vfd-part.svg",
+      "url": "/api/files/seed-f4",
+      "downloadUrl": "/api/files/seed-f4/download",
+      "uploadedAt": "2026-10-23T00:39:30.047Z",
+      "description": "備品庫存外箱與銘板實拍"
+    },
+    "1792627649154-df9894084e31": {
+      "id": "1792627649154-df9894084e31",
+      "originalName": "1792627649154-df9894084e31.png",
+      "fileType": "site_photo",
+      "mimeType": "image/png",
+      "size": 13,
+      "storedFilename": "1792627649154-df9894084e31.png",
+      "url": "/api/files/1792627649154-df9894084e31",
+      "downloadUrl": "/api/files/1792627649154-df9894084e31/download",
+      "uploadedAt": "2026-10-23T00:39:24.448Z",
+      "description": "系統永久保存之上傳檔案"
+    },
+    "1792627649156-442371a1b089": {
+      "id": "1792627649156-442371a1b089",
+      "originalName": "1792627649156-442371a1b089.png",
+      "fileType": "site_photo",
+      "mimeType": "image/png",
+      "size": 13,
+      "storedFilename": "1792627649156-442371a1b089.png",
+      "url": "/api/files/1792627649156-442371a1b089",
+      "downloadUrl": "/api/files/1792627649156-442371a1b089/download",
+      "uploadedAt": "2026-10-23T00:39:24.453Z",
+      "description": "系統永久保存之上傳檔案"
+    },
+    "1792716066568-c5ffd5e9ea77": {
+      "id": "1792716066568-c5ffd5e9ea77",
+      "originalName": "1792716066568-c5ffd5e9ea77.jpg",
+      "fileType": "site_photo",
+      "mimeType": "image/jpeg",
+      "size": 5,
+      "storedFilename": "1792716066568-c5ffd5e9ea77.jpg",
+      "url": "/api/files/1792716066568-c5ffd5e9ea77",
+      "downloadUrl": "/api/files/1792716066568-c5ffd5e9ea77/download",
+      "uploadedAt": "2026-10-23T00:41:06.577Z",
+      "description": "系統永久保存之上傳檔案"
+    },
+    "f_1792716525230_3609602b": {
+      "id": "f_1792716525230_3609602b",
+      "originalName": "f_1792716525230_3609602b.png",
+      "fileType": "site_photo",
+      "mimeType": "image/png",
+      "size": 15695,
+      "storedFilename": "f_1792716525230_3609602b.png",
+      "url": "/api/files/f_1792716525230_3609602b",
+      "downloadUrl": "/api/files/f_1792716525230_3609602b/download",
+      "uploadedAt": "2026-10-23T00:48:45.234Z",
+      "description": "系統永久保存之上傳檔案"
+    },
+    "f_1792716856436_4b0e45c1": {
+      "id": "f_1792716856436_4b0e45c1",
+      "originalName": "f_1792716856436_4b0e45c1.png",
+      "fileType": "site_photo",
+      "mimeType": "image/png",
+      "size": 1716805,
+      "storedFilename": "f_1792716856436_4b0e45c1.png",
+      "url": "/api/files/f_1792716856436_4b0e45c1",
+      "downloadUrl": "/api/files/f_1792716856436_4b0e45c1/download",
+      "uploadedAt": "2026-10-23T00:54:16.452Z",
+      "description": "系統永久保存之上傳檔案"
+    },
+    "f_1792716898454_ec7c9be4": {
+      "id": "f_1792716898454_ec7c9be4",
+      "originalName": "f_1792716898454_ec7c9be4.png",
+      "fileType": "site_photo",
+      "mimeType": "image/png",
+      "size": 78134,
+      "storedFilename": "f_1792716898454_ec7c9be4.png",
+      "url": "/api/files/f_1792716898454_ec7c9be4",
+      "downloadUrl": "/api/files/f_1792716898454_ec7c9be4/download",
+      "uploadedAt": "2026-10-23T00:54:58.456Z",
+      "description": "系統永久保存之上傳檔案"
+    },
+    "seed-cr001-schematic": {
+      "id": "seed-cr001-schematic",
+      "originalName": "seed-cr001-schematic.pdf",
+      "fileType": "circuit_diagram",
+      "mimeType": "application/pdf",
+      "size": 982,
+      "storedFilename": "seed-cr001-schematic.pdf",
+      "url": "/api/files/seed-cr001-schematic",
+      "downloadUrl": "/api/files/seed-cr001-schematic/download",
+      "uploadedAt": "2026-10-23T00:39:30.047Z",
+      "description": "系統永久保存之上傳檔案"
+    },
+    "seed-cr001-site": {
+      "id": "seed-cr001-site",
+      "originalName": "seed-cr001-site.svg",
+      "fileType": "site_photo",
+      "mimeType": "image/svg+xml",
+      "size": 2051,
+      "storedFilename": "seed-cr001-site.svg",
+      "url": "/api/files/seed-cr001-site",
+      "downloadUrl": "/api/files/seed-cr001-site/download",
+      "uploadedAt": "2026-10-23T00:39:30.047Z",
+      "description": "系統永久保存之上傳檔案"
+    },
+    "seed-vfd-manual": {
+      "id": "seed-vfd-manual",
+      "originalName": "seed-vfd-manual.pdf",
+      "fileType": "circuit_diagram",
+      "mimeType": "application/pdf",
+      "size": 1023,
+      "storedFilename": "seed-vfd-manual.pdf",
+      "url": "/api/files/seed-vfd-manual",
+      "downloadUrl": "/api/files/seed-vfd-manual/download",
+      "uploadedAt": "2026-10-23T00:39:30.047Z",
+      "description": "系統永久保存之上傳檔案"
+    },
+    "seed-vfd-part": {
+      "id": "seed-vfd-part",
+      "originalName": "seed-vfd-part.svg",
+      "fileType": "site_photo",
+      "mimeType": "image/svg+xml",
+      "size": 2042,
+      "storedFilename": "seed-vfd-part.svg",
+      "url": "/api/files/seed-vfd-part",
+      "downloadUrl": "/api/files/seed-vfd-part/download",
+      "uploadedAt": "2026-10-23T00:39:30.047Z",
+      "description": "系統永久保存之上傳檔案"
+    }
+  },
+  "maintenanceRecords": [
+    {
+      "id": "maint_seed_1",
+      "equipmentTagNumber": "CR-001",
+      "date": "2026-10-16",
+      "personnel": "張文豪 (機電工程師)",
+      "content": "執行每週例行巡檢：檢查主馬達變頻器冷卻風扇運轉與端子螺絲鎖緊度，以紅外線熱成像檢測三相電源進線端子，溫度為 38.2°C (正常)，絕緣阻抗 > 50MΩ。",
+      "files": [],
+      "createdAt": "2026-10-23T02:13:41.627Z"
+    },
+    {
+      "id": "maint_seed_2",
+      "equipmentTagNumber": "CR-001",
+      "date": "2026-10-21",
+      "personnel": "李建志 (現場技術員)",
+      "content": "料斗安全連鎖近接開關 SEN-001 重新清潔與校正，感測距離調整為 8mm，測試急停按鈕與雙迴路安全繼電器連鎖停機功能均正常無誤。",
+      "files": [],
+      "createdAt": "2026-10-23T02:13:41.627Z"
+    }
+  ]
+}

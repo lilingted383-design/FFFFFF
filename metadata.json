@@ -1,0 +1,6 @@
+{
+  "name": "電控設備與備品管理系統 V1.0",
+  "description": "工廠電控設備資料管理、線路圖與現場照片檢視、原廠手冊閱讀，以及備品庫存與儲位查詢系統",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}

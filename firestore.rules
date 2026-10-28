@@ -1,0 +1,43 @@
+rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+    // Global safety catch-all
+    match /{document=**} {
+      allow read, write: if false;
+    }
+
+    function isValidId(id) {
+      return id is string && id.size() > 0 && id.size() <= 256;
+    }
+
+    // Spare parts collection
+    match /spareParts/{partNumber} {
+      allow read: if true;
+      allow write: if isValidId(partNumber);
+    }
+
+    // Equipment collection
+    match /equipment/{tagNumber} {
+      allow read: if true;
+      allow write: if isValidId(tagNumber);
+    }
+
+    // Maintenance records collection
+    match /maintenanceRecords/{recordId} {
+      allow read: if true;
+      allow write: if isValidId(recordId);
+    }
+
+    // System configuration collection
+    match /systemConfig/{configId} {
+      allow read: if true;
+      allow write: if isValidId(configId);
+    }
+
+    // Registered files metadata collection
+    match /files/{fileId} {
+      allow read: if true;
+      allow write: if isValidId(fileId);
+    }
+  }
+}

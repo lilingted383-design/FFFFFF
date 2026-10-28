@@ -1,0 +1,110 @@
+{
+  "entities": {
+    "SparePart": {
+      "title": "SparePart",
+      "description": "電控備品元件資料模型",
+      "type": "object",
+      "properties": {
+        "partNumber": { "type": "string", "description": "料號唯一識別碼" },
+        "name": { "type": "string", "description": "品名" },
+        "brand": { "type": "string", "description": "廠牌" },
+        "model": { "type": "string", "description": "型號規格" },
+        "stockQty": { "type": "number", "description": "現有庫存量" },
+        "minStockQty": { "type": "number", "description": "安全庫存量" },
+        "storageLocation": { "type": "string", "description": "主要存放儲位" },
+        "storageLocations": { "type": "array", "description": "存放儲位陣列" },
+        "files": { "type": "array", "description": "相關手冊與照片" },
+        "notes": { "type": "string", "description": "備註說明" },
+        "requisitionRecords": { "type": "array", "description": "請購紀錄清單" },
+        "createdAt": { "type": "string", "description": "建立時間 ISO 字串" },
+        "updatedAt": { "type": "string", "description": "更新時間 ISO 字串" }
+      },
+      "required": ["partNumber", "name"]
+    },
+    "Equipment": {
+      "title": "Equipment",
+      "description": "電控機台設備資料模型",
+      "type": "object",
+      "properties": {
+        "tagNumber": { "type": "string", "description": "設備 TAG NUMBER" },
+        "name": { "type": "string", "description": "設備名稱" },
+        "parentTagNumber": { "type": "string", "description": "上層母機台 TAG" },
+        "category": { "type": "string", "description": "設備分類" },
+        "installationLocation": { "type": "string", "description": "安裝廠區位置" },
+        "notes": { "type": "string", "description": "設備備註" },
+        "files": { "type": "array", "description": "電路圖與照片" },
+        "componentPartNumbers": { "type": "array", "description": "使用備品料號" },
+        "maintenanceRecords": { "type": "array", "description": "巡檢維修紀錄" },
+        "createdAt": { "type": "string", "description": "建立時間 ISO 字串" },
+        "updatedAt": { "type": "string", "description": "更新時間 ISO 字串" }
+      },
+      "required": ["tagNumber", "name"]
+    },
+    "MaintenanceRecord": {
+      "title": "MaintenanceRecord",
+      "description": "維修紀錄資料模型",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string", "description": "維修紀錄 ID" },
+        "equipmentTagNumber": { "type": "string", "description": "設備 TAG" },
+        "date": { "type": "string", "description": "維修日期" },
+        "personnel": { "type": "string", "description": "維修人員" },
+        "content": { "type": "string", "description": "維修內容" },
+        "files": { "type": "array", "description": "維修照片與附件" },
+        "createdAt": { "type": "string", "description": "建立時間 ISO" },
+        "updatedAt": { "type": "string", "description": "更新時間 ISO" }
+      },
+      "required": ["id", "equipmentTagNumber", "date", "personnel", "content"]
+    },
+    "SystemConfig": {
+      "title": "SystemConfig",
+      "description": "系統全域設定",
+      "type": "object",
+      "properties": {
+        "equipmentCategories": { "type": "array", "description": "設備分類陣列" },
+        "partNames": { "type": "array", "description": "品名預設陣列" }
+      },
+      "required": ["equipmentCategories", "partNames"]
+    },
+    "FileRecord": {
+      "title": "FileRecord",
+      "description": "檔案中繼資料模型",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string", "description": "檔案識別碼" },
+        "originalName": { "type": "string", "description": "原始檔名" },
+        "fileType": { "type": "string", "description": "檔案類型" },
+        "mimeType": { "type": "string", "description": "MIME 類型" },
+        "size": { "type": "number", "description": "大小 bytes" },
+        "storedFilename": { "type": "string", "description": "儲存檔名" },
+        "url": { "type": "string", "description": "預覽網址" },
+        "downloadUrl": { "type": "string", "description": "下載網址" },
+        "uploadedAt": { "type": "string", "description": "上傳時間 ISO" },
+        "description": { "type": "string", "description": "描述" }
+      },
+      "required": ["id", "originalName", "storedFilename"]
+    }
+  },
+  "firestore": {
+    "/spareParts/{partNumber}": {
+      "schema": "SparePart",
+      "description": "電控備品物料與庫存清單集合"
+    },
+    "/equipment/{tagNumber}": {
+      "schema": "Equipment",
+      "description": "廠區電控設備與機台資料集合"
+    },
+    "/maintenanceRecords/{recordId}": {
+      "schema": "MaintenanceRecord",
+      "description": "設備維修與例行巡檢紀錄集合"
+    },
+    "/systemConfig/{configId}": {
+      "schema": "SystemConfig",
+      "description": "系統全域設定集合"
+    },
+    "/files/{fileId}": {
+      "schema": "FileRecord",
+      "description": "檔案與照片中繼資料註冊表集合"
+    }
+  }
+}
